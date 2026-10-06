@@ -23,10 +23,14 @@ video, .poster { position: fixed; inset: 0; width: 100%; height: 100%; object-fi
 main { position: relative; height: 100%; display: grid; place-items: center; text-align: center; padding: 20px; }
 h1 { font: 800 clamp(48px, 10vw, 128px)/1 "Shippori Mincho", serif; letter-spacing: .08em; margin: 0; }
 .jp { font: 800 clamp(18px, 2.4vw, 26px)/1 "Shippori Mincho", serif; color: var(--red); letter-spacing: .6em; padding-left: .6em; margin: 18px 0 44px; }
-a.dl { display: inline-block; padding: 14px 30px; border: 1px solid rgba(230,223,207,.5); color: var(--paper); text-decoration: none; letter-spacing: .2em; text-transform: uppercase; font-size: 14px; background: rgba(0,0,0,.35); transition: background .3s, border-color .3s; }
+.dls { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+a.dl { display: inline-block; min-width: 170px; padding: 14px 30px; border: 1px solid rgba(230,223,207,.5); color: var(--paper); text-decoration: none; letter-spacing: .18em; font-size: 15px; font-weight: 700; background: rgba(0,0,0,.35); transition: background .3s, border-color .3s; }
 a.dl:hover { background: var(--red); border-color: var(--red); }
 .small { margin-top: 18px; font-size: 12px; color: var(--dim); letter-spacing: .08em; }
 .small a { color: var(--dim); }
+.by { position: fixed; left: 18px; bottom: 16px; margin: 0; font-size: 12px; letter-spacing: .15em; color: var(--dim); }
+.by a { color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(230,223,207,.35); }
+.by a:hover { color: #fff; border-color: var(--red); }
 button.sound { position: fixed; right: 18px; bottom: 16px; background: none; border: 0; color: var(--dim); font: inherit; font-size: 12px; letter-spacing: .15em; cursor: pointer; }
 </style>
 </head>
@@ -40,10 +44,14 @@ button.sound { position: fixed; right: 18px; bottom: 16px; background: none; bor
   <div>
     <h1>THE ONES</h1>
     <p class="jp">選ばれし者</p>
-    <a class="dl" href="https://github.com/crafter-games/the-ones-game/releases/latest/download/TheOnes-win64.zip">Descargar · Windows</a>
-    <p class="small">Gratis · <a href="https://github.com/crafter-games/the-ones-game/releases/latest/download/TheOnes-macos.zip">macOS</a> · <a href="https://github.com/crafter-games/the-ones-game/blob/main/CREDITS.md">créditos</a></p>
+    <div class="dls">
+      <a class="dl" href="https://github.com/crafter-games/the-ones-game/releases/latest/download/TheOnes-win64.zip">Windows</a>
+      <a class="dl" href="https://github.com/crafter-games/the-ones-game/releases/latest/download/TheOnes-macos.zip">macOS</a>
+    </div>
+    <p class="small">Gratis · también en <a href="https://jibaru97.itch.io/the-ones">itch.io</a> · <a href="https://github.com/crafter-games/the-ones-game/blob/main/CREDITS.md">créditos</a></p>
   </div>
 </main>
+<p class="by">Hecho por <a href="https://github.com/Jibaru">Jibaru</a></p>
 <button class="sound" id="s">♪ SONIDO</button>
 <script>
   const v = document.getElementById("v"), s = document.getElementById("s");
