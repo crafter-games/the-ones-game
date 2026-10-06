@@ -156,6 +156,8 @@ em, .mark { color: var(--paper); font-style: italic; }
 .s-c { grid-column: span 4; aspect-ratio: 4/3; }
 .s-d { grid-column: span 4; aspect-ratio: 4/3; }
 .s-e { grid-column: span 4; aspect-ratio: 4/3; }
+.s-f { grid-column: span 5; aspect-ratio: 4/3.1; }
+.s-g { grid-column: span 7; aspect-ratio: 16/9; }
 
 /* rasgos */
 .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 50px; }
@@ -187,7 +189,7 @@ footer a { color: var(--paper-dim); }
 @media (max-width: 860px) {
   .story { grid-template-columns: 1fr; }
   .features { grid-template-columns: 1fr; }
-  .s-a, .s-b, .s-c, .s-d, .s-e { grid-column: span 12; aspect-ratio: 16/10; }
+  .s-a, .s-b, .s-c, .s-d, .s-e, .s-f, .s-g { grid-column: span 12; aspect-ratio: 16/10; }
 }
 </style>
 </head>
@@ -275,12 +277,12 @@ footer a { color: var(--paper-dim); }
   <section id="descargar" class="download">
     <div class="wrap reveal">
       <img class="icon" src="media/icon.png" alt="">
-      <p class="eyebrow">Gratis · v0.6.0</p>
+      <p class="eyebrow">Gratis · v0.7.0</p>
       <h2>Esta noche, no abras.</h2>
       <div class="cta" style="margin-top:34px">
         <a class="btn primary" href="https://github.com/crafter-games/the-ones-game/releases/latest/download/TheOnes-win64.zip">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
-          Descargar para Windows <small>.zip · 386 MB</small>
+          Descargar para Windows <small>.zip · 458 MB</small>
         </a>
         <a class="btn" href="https://github.com/crafter-games/the-ones-game/releases">Todas las versiones</a>
       </div>
