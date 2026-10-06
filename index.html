@@ -4,316 +4,50 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>THE ONES — 選ばれし者</title>
-<meta name="description" content="Horror en primera persona. Iwate, Japón, agosto de 1998. Semana de Obon. ¿Una secta… o algo que no es humano?">
+<meta name="description" content="No abras.">
 <meta property="og:title" content="THE ONES — 選ばれし者">
-<meta property="og:description" content="Horror en primera persona en el Japón rural de 1998. Descárgalo gratis para Windows.">
+<meta property="og:description" content="No abras.">
 <meta property="og:image" content="media/poster.jpg">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#0b0a09">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="media/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&family=Noto+Sans:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@800&family=Courier+Prime&display=swap" rel="stylesheet">
 <style>
-:root {
-  --ink: #0b0a09;
-  --ink-2: #14110f;
-  --paper: #e9e2d2;
-  --paper-dim: #b9b0a0;
-  --mute: #7d756a;
-  --red: #b8321f;
-  --red-glow: #e0533a;
-  --cold: #cfe3ff;
-  --line: rgba(233, 226, 210, .12);
-  --serif: "Shippori Mincho", "Noto Serif JP", serif;
-  --sans: "Noto Sans", "Noto Sans JP", system-ui, sans-serif;
-}
+:root { --paper: #e6dfcf; --dim: #8a8273; --red: #a3301f; }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--ink);
-  color: var(--paper);
-  font: 400 18px/1.7 var(--sans);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-/* grano de película sobre todo */
-body::after {
-  content: "";
-  position: fixed; inset: -50%;
-  pointer-events: none; z-index: 50;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  animation: grain 1.2s steps(6) infinite;
-}
-@keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-3%,2%)} 40%{transform:translate(2%,-3%)} 60%{transform:translate(-2%,-1%)} 80%{transform:translate(3%,3%)} 100%{transform:translate(0,0)} }
-@media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
-a { color: inherit; }
-.wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
-
-/* ---------- hero ---------- */
-.hero {
-  position: relative; min-height: 100svh;
-  display: grid; place-items: center; text-align: center;
-  isolation: isolate; overflow: hidden;
-}
-.hero video, .hero .poster {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: -2; filter: saturate(.8) brightness(.62);
-}
-.hero::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background:
-    radial-gradient(ellipse at 50% 45%, transparent 0, rgba(11,10,9,.45) 55%, var(--ink) 100%),
-    linear-gradient(to bottom, rgba(11,10,9,.2), transparent 30%, transparent 70%, var(--ink));
-}
-.kicker {
-  font: 500 15px/1 var(--sans); letter-spacing: .32em; text-transform: uppercase;
-  color: var(--paper-dim); margin: 0 0 28px;
-}
-h1 {
-  font: 800 clamp(56px, 11vw, 148px)/.95 var(--serif);
-  letter-spacing: .06em; margin: 0;
-  text-shadow: 0 0 40px rgba(0,0,0,.6);
-}
-.jp {
-  font: 500 clamp(22px, 3vw, 34px)/1 var(--serif);
-  color: var(--red-glow); letter-spacing: .5em; margin: 22px 0 0; padding-left: .5em;
-}
-.tagline {
-  max-width: 560px; margin: 34px auto 40px;
-  color: var(--paper-dim); font-style: italic; font-size: clamp(17px, 2vw, 20px);
-}
-.cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.btn {
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 16px 26px; border-radius: 3px;
-  font: 600 16px/1 var(--sans); letter-spacing: .04em; text-decoration: none;
-  border: 1px solid var(--line); background: rgba(20,17,15,.6);
-  backdrop-filter: blur(6px); cursor: pointer; color: var(--paper);
-  transition: border-color .25s, background .25s, transform .25s;
-}
-.btn:hover { border-color: rgba(233,226,210,.4); transform: translateY(-1px); }
-.btn.primary { background: var(--red); border-color: var(--red); box-shadow: 0 0 40px rgba(184,50,31,.35); }
-.btn.primary:hover { background: var(--red-glow); border-color: var(--red-glow); }
-.btn small { font-weight: 400; opacity: .75; letter-spacing: 0; }
-.btn svg { width: 18px; height: 18px; flex: none; }
-.scroll-hint {
-  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
-  font-size: 12px; letter-spacing: .3em; color: var(--mute);
-}
-
-/* ---------- secciones ---------- */
-section { padding: clamp(80px, 12vw, 150px) 0; }
-.eyebrow {
-  font: 600 13px/1 var(--sans); letter-spacing: .3em; text-transform: uppercase;
-  color: var(--red-glow); margin: 0 0 18px;
-}
-h2 {
-  font: 800 clamp(34px, 5vw, 58px)/1.1 var(--serif); margin: 0 0 28px; letter-spacing: .02em;
-}
-.lede { font-size: clamp(19px, 2.1vw, 23px); line-height: 1.65; color: var(--paper); max-width: 760px; }
-p { color: var(--paper-dim); }
-em, .mark { color: var(--paper); font-style: italic; }
-.red { color: var(--red-glow); }
-
-/* historia */
-.story { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
-.story figure { margin: 0; position: relative; }
-.story img { width: 100%; display: block; border-radius: 2px; }
-.story figure::after {
-  content: "AUG.13.1998"; position: absolute; right: 14px; bottom: 12px;
-  font: 600 13px/1 ui-monospace, monospace; color: rgba(255,240,210,.8); letter-spacing: .08em;
-}
-.quote {
-  border-left: 2px solid var(--red); padding: 4px 0 4px 22px; margin: 34px 0 0;
-  font: 500 20px/1.6 var(--serif); color: var(--paper);
-}
-.quote span { display: block; font: 400 14px/1.4 var(--sans); color: var(--mute); margin-top: 8px; font-style: normal; }
-
-/* tráiler */
-.trailer { background: var(--ink-2); border-block: 1px solid var(--line); }
-.screen {
-  position: relative; aspect-ratio: 16 / 9; width: 100%;
-  border-radius: 4px; overflow: hidden; background: #000;
-  box-shadow: 0 40px 120px rgba(0,0,0,.7), 0 0 0 1px var(--line);
-}
-.screen video { width: 100%; height: 100%; display: block; }
-
-/* señales */
-.signs { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 50px; }
-.sign { position: relative; overflow: hidden; border-radius: 2px; background: #000; margin: 0; }
-.sign img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease, filter .6s; filter: saturate(.85); }
-.sign:hover img { transform: scale(1.04); filter: saturate(1); }
-.sign figcaption {
-  position: absolute; inset: auto 0 0 0; padding: 40px 20px 18px;
-  background: linear-gradient(transparent, rgba(0,0,0,.85));
-  font-size: 15px; color: var(--paper);
-}
-.sign figcaption b { display: block; font: 800 20px/1.2 var(--serif); margin-bottom: 4px; }
-.s-a { grid-column: span 7; aspect-ratio: 16/9; }
-.s-b { grid-column: span 5; aspect-ratio: 4/3.1; }
-.s-c { grid-column: span 4; aspect-ratio: 4/3; }
-.s-d { grid-column: span 4; aspect-ratio: 4/3; }
-.s-e { grid-column: span 4; aspect-ratio: 4/3; }
-.s-f { grid-column: span 5; aspect-ratio: 4/3.1; }
-.s-g { grid-column: span 7; aspect-ratio: 16/9; }
-
-/* rasgos */
-.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 50px; }
-.feature { background: var(--ink); padding: 34px 30px; }
-.feature .n { font: 800 15px/1 var(--serif); color: var(--red-glow); letter-spacing: .12em; }
-.feature h3 { font: 800 22px/1.3 var(--serif); margin: 14px 0 10px; }
-.feature p { margin: 0; font-size: 16px; }
-
-/* descarga */
-.download { text-align: center; position: relative; isolation: isolate; overflow: hidden; }
-.download::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: url("media/okuribi.jpg") center/cover; filter: brightness(.28) saturate(.7);
-}
-.download::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at center, transparent, var(--ink) 80%); }
-.download .icon { width: 96px; height: 96px; border-radius: 18px; box-shadow: 0 0 60px rgba(184,50,31,.4); margin-bottom: 26px; }
-.specs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin: 34px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--mute); }
-.specs li::before { content: "·"; margin-right: 10px; color: var(--red); }
-.warn { margin: 26px auto 0; font-size: 14px; color: var(--mute); max-width: 520px; }
-
-footer { padding: 50px 0 60px; border-top: 1px solid var(--line); font-size: 14px; color: var(--mute); }
-footer .row { display: flex; flex-wrap: wrap; gap: 14px 30px; justify-content: space-between; align-items: center; }
-footer a { color: var(--paper-dim); }
-
-/* aparición al hacer scroll */
-.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1s ease; }
-.js .reveal.on { opacity: 1; transform: none; }
-
-@media (max-width: 860px) {
-  .story { grid-template-columns: 1fr; }
-  .features { grid-template-columns: 1fr; }
-  .s-a, .s-b, .s-c, .s-d, .s-e, .s-f, .s-g { grid-column: span 12; aspect-ratio: 16/10; }
-}
+html, body { margin: 0; height: 100%; background: #000; color: var(--paper); }
+body { font: 16px/1.5 "Courier Prime", ui-monospace, monospace; overflow: hidden; }
+video, .poster { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.55) saturate(.8); }
+.veil { position: fixed; inset: 0; background: radial-gradient(ellipse at center, transparent 0, rgba(0,0,0,.35) 55%, #000 100%); }
+main { position: relative; height: 100%; display: grid; place-items: center; text-align: center; padding: 20px; }
+h1 { font: 800 clamp(48px, 10vw, 128px)/1 "Shippori Mincho", serif; letter-spacing: .08em; margin: 0; }
+.jp { font: 800 clamp(18px, 2.4vw, 26px)/1 "Shippori Mincho", serif; color: var(--red); letter-spacing: .6em; padding-left: .6em; margin: 18px 0 44px; }
+a.dl { display: inline-block; padding: 14px 30px; border: 1px solid rgba(230,223,207,.5); color: var(--paper); text-decoration: none; letter-spacing: .2em; text-transform: uppercase; font-size: 14px; background: rgba(0,0,0,.35); transition: background .3s, border-color .3s; }
+a.dl:hover { background: var(--red); border-color: var(--red); }
+.small { margin-top: 18px; font-size: 12px; color: var(--dim); letter-spacing: .08em; }
+.small a { color: var(--dim); }
+button.sound { position: fixed; right: 18px; bottom: 16px; background: none; border: 0; color: var(--dim); font: inherit; font-size: 12px; letter-spacing: .15em; cursor: pointer; }
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <img class="poster" src="media/poster.jpg" alt="" aria-hidden="true">
-  <video id="bg" autoplay muted loop playsinline preload="metadata" poster="media/poster.jpg" aria-hidden="true">
-    <source src="media/trailer.mp4" type="video/mp4">
-  </video>
-  <div class="wrap">
-    <p class="kicker">Iwate · Japón · Agosto de 1998</p>
+<img class="poster" src="media/poster.jpg" alt="" aria-hidden="true">
+<video id="v" autoplay muted loop playsinline preload="auto" poster="media/poster.jpg">
+  <source src="media/trailer.mp4" type="video/mp4">
+</video>
+<div class="veil"></div>
+<main>
+  <div>
     <h1>THE ONES</h1>
     <p class="jp">選ばれし者</p>
-    <p class="tagline">Cuatro noches de Obon. Señales en el arrozal. Golpes en la puerta.<br>¿Es una secta… o algo que no es humano?</p>
-    <div class="cta">
-      <a class="btn primary" href="#descargar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
-        Descargar gratis <small>Windows</small>
-      </a>
-      <a class="btn" href="#trailer">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        Ver el tráiler
-      </a>
-    </div>
+    <a class="dl" href="https://github.com/crafter-games/the-ones-game/releases/latest/download/TheOnes-win64.zip">Descargar · Windows</a>
+    <p class="small">Gratis · <a href="https://github.com/crafter-games/the-ones-game/blob/main/CREDITS.md">créditos</a></p>
   </div>
-  <span class="scroll-hint">↓</span>
-</header>
-
-<main>
-  <section id="historia">
-    <div class="wrap story">
-      <div class="reveal">
-        <p class="eyebrow">La historia</p>
-        <h2>Hace un año, la noche del tifón, Michiko no volvió.</h2>
-        <p class="lede">Eres <span class="mark">Haruo Sakai</span>, un agricultor viudo de Kiriyama-mura. En el pueblo lo llamaron <span class="red">kamikakushi</span>: escondida por los dioses.</p>
-        <p>Ahora es la semana de Obon, cuando los muertos vuelven a casa. Las ranas del arrozal se callan de golpe. Hay huellas de botas junto al pozo. Una secta deja papeles en tu puerta. Y anoche, algo caminó sobre el techo.</p>
-        <p class="quote">«Si escuchas esto, Haruo, no abras. Aunque sea mi voz.»<span>— Casete de Michiko, 1997</span></p>
-      </div>
-      <figure class="reveal"><img src="media/t11.jpg" alt="La casa de Haruo al atardecer, al otro lado del arrozal, con los shoji encendidos" loading="lazy"></figure>
-    </div>
-  </section>
-
-  <section id="trailer" class="trailer">
-    <div class="wrap">
-      <p class="eyebrow reveal">Tráiler</p>
-      <h2 class="reveal">No mires la televisión demasiado tiempo.</h2>
-      <div class="screen reveal">
-        <video controls preload="none" poster="media/poster.jpg">
-          <source src="media/trailer.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </section>
-
-  <section id="senales">
-    <div class="wrap">
-      <p class="eyebrow reveal">Las señales</p>
-      <h2 class="reveal">Todo tiene una explicación.<br><span class="red">Casi todo.</span></h2>
-      <div class="signs">
-        <figure class="sign s-a reveal"><img src="media/t27.jpg" alt="Tres luces en triángulo sobre los cerros" loading="lazy"><figcaption><b>Luces sobre el cerro</b>Tres, en triángulo. Inmóviles. Hasta que dos se apagan.</figcaption></figure>
-        <figure class="sign s-b reveal"><img src="media/t41.jpg" alt="Una silueta alta tras el papel del shoji" loading="lazy"><figcaption><b>Detrás del shoji</b>Algo muy alto pasa frente a la luna.</figcaption></figure>
-        <figure class="sign s-c reveal"><img src="media/t35.jpg" alt="Encapuchados con faroles en el dique" loading="lazy"><figcaption><b>Erabareshi Mono</b>Los elegidos vienen con faroles.</figcaption></figure>
-        <figure class="sign s-d reveal"><img src="media/news.jpg" alt="Un video casero en la televisión" loading="lazy"><figcaption><b>JBN, 19:00</b>«Las imágenes que verán pueden resultar perturbadoras.»</figcaption></figure>
-        <figure class="sign s-e reveal"><img src="media/t19.jpg" alt="La casa de noche, con los shoji encendidos" loading="lazy"><figcaption><b>La casa</b>Cuatro noches. Pocas tablas. Una sola puerta.</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section id="juego" style="padding-top:0">
-    <div class="wrap">
-      <p class="eyebrow reveal">El juego</p>
-      <h2 class="reveal">Investiga de día. Sobrevive de noche.</h2>
-      <div class="features reveal">
-        <div class="feature"><span class="n">壱</span><h3>Cuatro días, cuatro noches</h3><p>Atiende la chacra, sigue las pistas, escucha los casetes de Michiko y las noticias. La noche solo avanza cuando duermes.</p></div>
-        <div class="feature"><span class="n">弐</span><h3>¿Quién toca la puerta?</h3><p>Mira por la rendija. Habla. Decide si abrir. Algunas voces repiten frases que ya escuchaste.</p></div>
-        <div class="feature"><span class="n">参</span><h3>Una cámara VHS-C</h3><p>Visión nocturna, batería limitada… y cosas que solo aparecen a través de la cinta.</p></div>
-        <div class="feature"><span class="n">四</span><h3>Japón rural, 1998</h3><p>Arrozales con niebla, bosques de sugi, el altavoz del pueblo a las 17:00, la TV de tubo y la contestadora.</p></div>
-        <div class="feature"><span class="n">五</span><h3>Voces en japonés</h3><p>Narración y diálogos doblados en japonés, con subtítulos en español e inglés.</p></div>
-        <div class="feature"><span class="n">六</span><h3>Dos finales</h3><p>Uno es inevitable. El otro, solo si escuchaste todo lo que Michiko dejó… y nunca abriste.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="descargar" class="download">
-    <div class="wrap reveal">
-      <img class="icon" src="media/icon.png" alt="">
-      <p class="eyebrow">Gratis · v0.7.0</p>
-      <h2>Esta noche, no abras.</h2>
-      <div class="cta" style="margin-top:34px">
-        <a class="btn primary" href="https://github.com/crafter-games/the-ones-game/releases/latest/download/TheOnes-win64.zip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
-          Descargar para Windows <small>.zip · 458 MB</small>
-        </a>
-        <a class="btn" href="https://github.com/crafter-games/the-ones-game/releases">Todas las versiones</a>
-      </div>
-      <ul class="specs">
-        <li>Windows 10/11 · 64 bits</li>
-        <li>GPU con Vulkan (GTX 1060 / RX 580 o superior)</li>
-        <li>8 GB de RAM</li>
-        <li>Español · English · 日本語 (voces)</li>
-        <li>Teclado y mouse · mando</li>
-      </ul>
-      <p class="warn">Descomprime y ejecuta <code>TheOnes.exe</code>. Windows puede mostrar un aviso de SmartScreen porque el juego no está firmado: «Más información» → «Ejecutar de todas formas». Se recomienda jugar con auriculares, de noche.</p>
-    </div>
-  </section>
 </main>
-
-<footer>
-  <div class="wrap row">
-    <span>THE ONES · 選ばれし者 — un juego de <a href="https://github.com/crafter-games">Crafter Games</a>, hecho en Godot 4.</span>
-    <span><a href="https://github.com/crafter-games/the-ones-game/blob/main/CREDITS.md">Créditos y licencias</a> · Assets CC0 / CC-BY / OFL · Voces: ElevenLabs</span>
-  </div>
-</footer>
-
+<button class="sound" id="s">♪ SONIDO</button>
 <script>
-  document.documentElement.classList.add("js");
-  // Aparición suave al hacer scroll
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .12 });
-  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
-  // El video de fondo se pausa fuera de pantalla y respeta "reducir movimiento"
-  const bg = document.getElementById("bg");
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { bg.removeAttribute("autoplay"); bg.pause(); bg.style.display = "none"; }
-  new IntersectionObserver(([e]) => e.isIntersecting ? bg.play().catch(() => {}) : bg.pause()).observe(bg);
+  const v = document.getElementById("v"), s = document.getElementById("s");
+  s.onclick = () => { v.muted = !v.muted; if (!v.muted) { v.currentTime = 0; v.play(); } s.textContent = v.muted ? "♪ SONIDO" : "× SILENCIO"; };
 </script>
 </body>
 </html>
